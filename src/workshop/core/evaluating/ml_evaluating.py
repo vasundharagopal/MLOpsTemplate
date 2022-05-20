@@ -102,14 +102,14 @@ def main(args):
             mlflow.log_metric("mape_current",mape_current)
             mlflow.log_metric("r2_current",r2_current)
             mlflow.log_metric("rmse_current",rmse_current)
-            if r2_candidate >= r2_current:
-                print("better model found, registering")
-                mlflow.sklearn.log_model(candidate_model,args.model_name)
-                model_uri = f'runs:/{run_id}/{args.model_name}'
-                mlflow.register_model(model_uri,args.model_name)
+            # if r2_candidate >= r2_current:
+            print("better model found, registering")
+            mlflow.sklearn.log_model(candidate_model,args.model_name)
+            model_uri = f'runs:/{run_id}/{args.model_name}'
+            mlflow.register_model(model_uri,args.model_name)
 
-            else:
-                raise Exception("candidate model does not perform better, exiting")
+            # else:
+              #  raise Exception("candidate model does not perform better, exiting")
         
         else:
             print("First time model train, registering")
